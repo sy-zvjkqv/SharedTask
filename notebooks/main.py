@@ -24,7 +24,7 @@ tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
 
 x="tweet"
 y="code"
-df=pd.read_csv("/home/is/shuntaro-o/miniconda3/git/SharedTask/data/japan_data.csv")
+df=pd.read_csv("../data/japan_data.csv")
 df_train,df_val,df_test,num_class=Data_pre(df)
 dataloader_train=Dataloader(df_train,x,y,batch)
 dataloader_val=Dataloader(df_val,x,y,batch)
@@ -39,7 +39,7 @@ checkpoint = pl.callbacks.ModelCheckpoint(
     mode='min',
     save_top_k=1,
     save_weights_only=True,
-    dirpath='git/SharedTask/notebooks/model',
+    dirpath='../models',
 )
 trainer = pl.Trainer(
     gpus=1,
