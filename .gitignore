@@ -1,6 +1,7 @@
 data/*
 models/*
 outputs/*
+notebooks/lightning_logs/*
 __pycache__
 .coverage
 .mypy_cache
