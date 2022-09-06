@@ -47,3 +47,8 @@ trainer = pl.Trainer(
     callbacks=[checkpoint]
 )
 trainer.fit(model, dataloader_train, dataloader_val)
+
+test=trainer.test(dataloaders=dataloader_test)
+
+save_path="../save_models"
+torch.save(model.state_dict(), save_path)
