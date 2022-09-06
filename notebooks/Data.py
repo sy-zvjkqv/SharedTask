@@ -43,7 +43,5 @@ def Dataloader(df,x,y,batch):
         i=i+1
         encoding = { k: torch.tensor(v) for k, v in encoding.items() }
         dataset_for_loader.append(encoding)
-        if i==10:
-            break
     dataloader=DataLoader(dataset_for_loader, batch_size=batch)
     return dataloader
