@@ -7,7 +7,19 @@
     <form action="/index" method="POST">
         <input type="text" name="name" placeholder="テキストを入力" maxlength="10">
         <input type="submit" value="送信">
+        <div>
+			<label for="r1">東京：</label>
+			<input type="radio" id="r1" name="radio" value="東京">
+		</div>
+		<div>
+			<label for="r2">全国：</label>
+			<input type="radio" id="r2" name="radio" value="全国">
+		</div>
+		<div>
+			<input type="submit" value="送信">
+		</div>
     </form>
     <h>{{name}}</h>
+    <h>{{serect}}</h>
     </body>
 </html>

@@ -11,8 +11,12 @@ def index():
 @app.route("/index",methods=["post"])
 def post():
     name = request.form["name"]
-    name=estimater(name)
-    return render_template("index.html", name=name)
+    serect = request.form.get('radio')
+    if serect=="東京":
+        name=estimater(name,serect)
+    elif serect=="全国":
+        name=estimater(name,serect)
+    return render_template("index.html", name=name,serect=serect)
 
 if __name__ == "__main__":
     app.run(debug=True)
