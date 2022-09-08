@@ -1,12 +1,14 @@
 from flask import Flask,render_template,request
+import folium
 from estimate import estimater
+from map import view,first,second,third
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
     name = request.args.get("name")
-    return render_template("index.html",name=name)
+    return render_template("index.html")
 
 @app.route("/index",methods=["post"])
 def post():
@@ -16,7 +18,9 @@ def post():
         name=estimater(name,serect)
     elif serect=="全国":
         name=estimater(name,serect)
-    return render_template("index.html", name=name,serect=serect)
+    folium_map=view(name)
+    folium_map.save('templates/map.html')
+    return render_template("result.html", name=name)
 
 if __name__ == "__main__":
     app.run(debug=True)

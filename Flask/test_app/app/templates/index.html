@@ -2,10 +2,11 @@
 <html>
     <head>
         <title>入力フォーム</title>
+        <link rel="stylesheet" href="style.css" >
     </head>
     <body>
     <form action="/index" method="POST">
-        <input type="text" name="name" placeholder="テキストを入力" maxlength="10">
+        <input type="text" name="name" placeholder="テキストを入力" maxlength="10" class="m-form-text">
         <input type="submit" value="送信">
         <div>
 			<label for="r1">東京：</label>
@@ -19,7 +20,5 @@
 			<input type="submit" value="送信">
 		</div>
     </form>
-    <h>{{name}}</h>
-    <h>{{serect}}</h>
     </body>
 </html>
