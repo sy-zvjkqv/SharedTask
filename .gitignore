@@ -2,6 +2,7 @@ data/*
 models/*
 outputs/*
 notebooks/lightning_logs/*
+Flask/test_app/app/models/*
 __pycache__
 .coverage
 .mypy_cache
