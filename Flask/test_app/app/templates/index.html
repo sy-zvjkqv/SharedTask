@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{name}}</title>
+        <title>入力フォーム</title>
     </head>
     <body>
     <form action="/index" method="POST">
-        <input type="text" name="name" placeholder="Enter name">
-        <input type="submit" value="Submit">
+        <input type="text" name="name" placeholder="テキストを入力" maxlength="10">
+        <input type="submit" value="送信">
     </form>
+    <h>{{name}}</h>
     </body>
 </html>

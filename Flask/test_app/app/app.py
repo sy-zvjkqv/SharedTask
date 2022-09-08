@@ -12,7 +12,7 @@ def index():
 def post():
     name = request.form["name"]
     name=estimater(name)
-    return render_template("result.html", name=name)
+    return render_template("index.html", name=name)
 
 if __name__ == "__main__":
     app.run(debug=True)
