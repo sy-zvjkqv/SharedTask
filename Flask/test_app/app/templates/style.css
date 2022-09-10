@@ -1,5 +1,5 @@
 .m-form-text {
-    height: 2.4em;
+    height: 6em;
     width: 100%;
     padding: 0 16px;
     border-radius: 4px;
@@ -13,4 +13,15 @@
 .m-form-text:focus {
     outline: 0;
     box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+.box1 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+}
+.box1 p {
+    margin: 0; 
+    padding: 0;
 }

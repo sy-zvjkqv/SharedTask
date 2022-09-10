@@ -94,10 +94,13 @@ def harf(meshcode):
   }
 
 })(typeof exports === 'undefined' ? this.meshcode2latlng = {} : exports);"""
-def view(meshcode):
-    start_coords = (35.6809591,139.7673068)
-    south,west,north,east=second(meshcode)
-    folium_map = folium.Map(location=start_coords, zoom_start=14)
+def view(meshcode,select):
+    if select=="東京":
+        south,west,north,east=second(meshcode)
+    elif select=="全国":
+        south,west,north,east=first(meshcode)
+    start_coords =  ((south+north)/2,(west+east)/2)
+    folium_map = folium.Map(location=start_coords, zoom_start=10)
     sw=(south,west)
     se=(south,east)
     ne=(north,east)

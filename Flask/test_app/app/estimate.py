@@ -16,8 +16,8 @@ class BertForSequenceClassifier_pl(pl.LightningModule):
             param.requires_grad = False
         for param in self.bert.encoder.layer[-1].parameters():
             param.requires_grad = True
-def estimater(name,serect):
-    if serect=="東京":
+def estimater(name,select):
+    if select=="東京":
         arg2mesh=[523871, 523872, 523873, 523874, 523875, 523876, 523877, 523970,
         523971, 523972, 523973, 523974, 523975, 523976, 523977, 533800,
         533802, 533803, 533804, 533805, 533806, 533807, 533811, 533812,
@@ -43,7 +43,7 @@ def estimater(name,serect):
         543912, 543913, 543914, 543915, 543916, 543917, 543920, 543921,
         543922, 543923, 543924, 543925, 543926, 543927, 544010, 544020]
         code_estimate_model_path="./models/TOKYOmodel.ckpt"
-    elif serect=="全国":
+    elif select=="全国":
         arg2mesh=[3927, 3928, 3933, 3942, 3945, 4027, 4028, 4033, 4037, 4040, 4042,
         4043, 4128, 4129, 4130, 4133, 4134, 4135, 4140, 4142, 4143, 4228,
         4229, 4231, 4233, 4236, 4243, 4330, 4331, 4332, 4340, 4428, 4432,

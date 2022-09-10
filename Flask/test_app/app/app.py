@@ -13,12 +13,12 @@ def index():
 @app.route("/index",methods=["post"])
 def post():
     name = request.form["name"]
-    serect = request.form.get('radio')
-    if serect=="東京":
-        name=estimater(name,serect)
-    elif serect=="全国":
-        name=estimater(name,serect)
-    folium_map=view(name)
+    select = request.form.get('radio')
+    if select=="東京":
+        name=estimater(name,select)
+    elif select=="全国":
+        name=estimater(name,select)
+    folium_map=view(name,select)
     folium_map.save('templates/map.html')
     return render_template("result.html", name=name)
 
