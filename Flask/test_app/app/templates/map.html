@@ -23,27 +23,38 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_427fee921cbe01da6503eaffad72af2d {
+                #map_f33aeed89baf06214eb50070bf61882d {
                     position: relative;
                     width: 100.0%;
-                    height: 100.0%;
+                    height: 80.0%;
                     left: 0.0%;
                     top: 0.0%;
+                }
+                .box {
+                    width: 100%;
+                    height: 20%;
+                    left: 0.0%;
+                    top: 80.0%;
+                    background: #f2f2f2;
                 }
             </style>
         
 </head>
 <body>    
     
-            <div class="folium-map" id="map_427fee921cbe01da6503eaffad72af2d" ></div>
+            <div class="folium-map" id="map_f33aeed89baf06214eb50070bf61882d" ></div>
+            <div class="box">
+                <p><font size="6">入力テキスト：{{text}}</font></p>
+                <p><font size="6">予測メッシュコード：{{code}}</font></p>
+            </div>
         
 </body>
 <script>    
     
-            var map_427fee921cbe01da6503eaffad72af2d = L.map(
-                "map_427fee921cbe01da6503eaffad72af2d",
+            var map_f33aeed89baf06214eb50070bf61882d = L.map(
+                "map_f33aeed89baf06214eb50070bf61882d",
                 {
-                    center: [35.66666666666667, 139.5],
+                    center: {{start_coords}},
                     crs: L.CRS.EPSG3857,
                     zoom: 10,
                     zoomControl: true,
@@ -55,15 +66,15 @@
 
         
     
-            var tile_layer_fe340abf1c8f54e0e02bb77f2078fabb = L.tileLayer(
+            var tile_layer_645cb1f1af0fcc68564bcef90a97569e = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_427fee921cbe01da6503eaffad72af2d);
+            ).addTo(map_f33aeed89baf06214eb50070bf61882d);
         
     
-            var polygon_682797ebfd1da0fda286f0eb5f832d48 = L.polygon(
-                [[35.333333333333336, 139.0], [35.333333333333336, 140.0], [36.00000000000001, 140.0], [36.00000000000001, 139.0]],
+            var polygon_55d76c4a102acfbc5764e9da563e9170 = L.polygon(
+                [{{sw}}, {{se}}, {{ne}}, {{nw}}],
                 {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 10}
-            ).addTo(map_427fee921cbe01da6503eaffad72af2d);
+            ).addTo(map_f33aeed89baf06214eb50070bf61882d);
         
 </script>

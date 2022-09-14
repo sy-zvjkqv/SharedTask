@@ -16,7 +16,7 @@ class BertForSequenceClassifier_pl(pl.LightningModule):
             param.requires_grad = False
         for param in self.bert.encoder.layer[-1].parameters():
             param.requires_grad = True
-def estimater(name,select):
+def estimater(name,select="全国"):
     if select=="東京":
         arg2mesh=[523871, 523872, 523873, 523874, 523875, 523876, 523877, 523970,
         523971, 523972, 523973, 523974, 523975, 523976, 523977, 533800,

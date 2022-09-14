@@ -113,3 +113,15 @@ def view(meshcode,select):
     fill_opacity=0.5 # 透明度（1=不透明）
     ).add_to(folium_map)
     return folium_map
+
+def polygon(meshcode,select="全国"):
+    if select=="東京":
+        south,west,north,east=second(meshcode)
+    elif select=="全国":
+        south,west,north,east=first(meshcode)
+    start_coords =  [(south+north)/2,(west+east)/2]
+    sw=[south,west]
+    se=[south,east]
+    ne=[north,east]
+    nw=[north,west]
+    return start_coords,sw,se,ne,nw
