@@ -20,7 +20,7 @@ def post():
         name=estimater(name,select)
     folium_map=view(name,select)
     folium_map.save('templates/map.html')
-    return render_template("result.html", name=name)
+    return render_template("index.html", name=name)
 
 if __name__ == "__main__":
     app.run(debug=True)

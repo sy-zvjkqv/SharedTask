@@ -2,16 +2,36 @@
 <html>
     <head>
         <title>入力フォーム</title>
-        <link rel="stylesheet" href="style.css" >
+        <style>
+        .box1{
+        display: inline-block;
+        margin: 2em auto;
+        padding: 1em;
+        width: 90%;
+        background-color: #fff; /* 背景色 */
+        border: 1px solid #111; /* 枠線 */
+        }
+        </style>
     </head>
     <body>
             <div class="box1">
-            <form action="/index" method="POST">
-            <p><textarea name="name" cols="30" rows="10" class=".m-form-text"></textarea></p>
-            <label for="r1">東京：</label><input type="radio" id="r1" name="radio" value="東京">
-            <label for="r2">全国：</label><input type="radio" id="r2" name="radio" value="全国">
-            <input type="submit" value="送信">
-            </form>
+                <div>
+                <form action="/index" method="POST">
+                <p><textarea name="name" cols="30" rows="10" class=".m-form-text"></textarea></p>
+                <label for="r1">東京：</label><input type="radio" id="r1" name="radio" value="東京">
+                <label for="r2">全国：</label><input type="radio" id="r2" name="radio" value="全国">
+                <input type="submit" value="送信">
+                </form>
+                </div>
+                <div>
+                <h>{{name}}</h>
+                </div>
             </div>
+                {% extends "layout.html" %}
+                {% block title %} Test {% endblock %}
+                {% block head %} {{ super() }} {% endblock %}
+                {% block body %}
+                    {% include "map.html" %}
+                {% endblock %}
     </body>
 </html>
