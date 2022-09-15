@@ -24,4 +24,4 @@ def post():
     return render_template("map.html",text=text,code=code, start_coords= start_coords,sw=sw,se=se,ne=ne,nw=nw)
 
 if __name__ == "__main__":
-    app.run(debug=True ,port=5002)
+    app.run(debug=True)
