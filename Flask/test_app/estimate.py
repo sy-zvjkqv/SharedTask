@@ -42,7 +42,7 @@ def estimater(name,select="全国"):
         543902, 543903, 543904, 543905, 543906, 543907, 543910, 543911,
         543912, 543913, 543914, 543915, 543916, 543917, 543920, 543921,
         543922, 543923, 543924, 543925, 543926, 543927, 544010, 544020]
-        code_estimate_model_path="/home/is/shuntaro-o/miniconda3/git/SharedTask/Flask/test_app/models/TOKYOmodel.ckpt"
+        code_estimate_model_path="/home/is/shuntaro-o/git/SharedTask/Flask/test_app/models/tokyo.ckpt"
     elif select=="全国":
         arg2mesh=[3927, 3928, 3933, 3942, 3945, 4027, 4028, 4033, 4037, 4040, 4042,
         4043, 4128, 4129, 4130, 4133, 4134, 4135, 4140, 4142, 4143, 4228,
@@ -67,7 +67,7 @@ def estimater(name,select="全国"):
         6445, 6446, 6537, 6540, 6541, 6542, 6543, 6544, 6545, 6636, 6640,
         6641, 6642, 6643, 6644, 6645, 6741, 6742, 6743, 6745, 6830, 6831,
         6840, 6841, 6843]
-        code_estimate_model_path="/home/is/shuntaro-o/miniconda3/git/SharedTask/Flask/test_app/models/japan_model.ckpt"
+        code_estimate_model_path="/home/is/shuntaro-o/git/SharedTask/Flask/test_app/models/japan_model.ckpt"
     tokenizer = BertTokenizer.from_pretrained('cl-tohoku/bert-base-japanese-whole-word-masking')
     model = BertForSequenceClassifier_pl.load_from_checkpoint(code_estimate_model_path)
     bert=model.bert.cuda()
