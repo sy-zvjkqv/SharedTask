@@ -3,14 +3,13 @@ import folium
 from estimate import estimater
 from map import view,first,second,third,polygon
 app = Flask(__name__)
-
-
-@app.route("/")
+PREFIX="/texttolocation"
+@app.route(PREFIX+"/")
 def index():
     name = request.args.get("name")
     return render_template("index.html")
 
-@app.route("/index",methods=["post"])
+@app.route(PREFIX+"/index",methods=["post"])
 def post():
     text = request.form["name"]
     select = request.form.get('radio')
@@ -24,4 +23,4 @@ def post():
     return render_template("map.html",text=text,code=code, start_coords= start_coords,sw=sw,se=se,ne=ne,nw=nw)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True,port=5125)
