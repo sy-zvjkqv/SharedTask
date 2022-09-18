@@ -24,7 +24,7 @@ tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
 
 x="tweet"
 y="code"
-df=pd.read_csv("../data/japan_data.csv")
+df=pd.read_csv("../data/Nara.csv")
 df_train,df_val,df_test,num_class=Data_pre(df)
 dataloader_train=Dataloader(df_train,x,y,batch)
 dataloader_val=Dataloader(df_val,x,y,batch)
@@ -49,6 +49,3 @@ trainer = pl.Trainer(
 trainer.fit(model, dataloader_train, dataloader_val)
 
 test=trainer.test(dataloaders=dataloader_test)
-
-save_path="../saved_models"
-torch.save(model.state_dict(), save_path)
