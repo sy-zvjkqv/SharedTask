@@ -1,25 +1,12 @@
-import os
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
-import numpy as np
-import pandas as pd
-from simpletransformers.classification import ClassificationModel, ClassificationArgs
-import logging
-from sklearn.model_selection import train_test_split
-import torch
-pd.set_option('display.max_columns', 50)
-import random
-from tqdm import tqdm
-
-from torch.utils.data import DataLoader
-from transformers import BertTokenizer, BertForSequenceClassification
-import pytorch_lightning as pl
-MODEL_NAME='cl-tohoku/bert-base-japanese-whole-word-masking'
-batch=1
-
-from torch import nn
-import torch.nn.functional as F
-from transformers import AutoModel
 from transformers import BertModel
+from torch import nn
+import torch
+import pytorch_lightning as pl
+
+MODEL_NAME = "cl-tohoku/bert-base-japanese-whole-word-masking"
+batch = 1
+
+
 class BertForSequenceClassifier_pl(pl.LightningModule):
     def __init__(self, model_name, lr, num_class):
         # model_name: Transformersのモデルの名前
@@ -43,45 +30,45 @@ class BertForSequenceClassifier_pl(pl.LightningModule):
 
     def forward(self, input_ids, attention_mask, labels=None):
         output = self.bert(input_ids, attention_mask=attention_mask)
-        preds= self.classifier(output.pooler_output)
+        preds = self.classifier(output.pooler_output)
         loss = 0
         if labels is not None:
             loss = self.criterion(preds, labels)
-        #print(f"tihi is {loss}")
+        # print(f"tihi is {loss}")
         return loss, preds
 
     # trainのミニバッチに対して行う処理
     def training_step(self, batch, batch_idx):
-        loss, preds = self.forward(input_ids=batch["input_ids"],
-                                    attention_mask=batch["attention_mask"],
-                                    labels=batch["labels"])
-        self.log('train_loss', loss)
-        return {'loss': loss,
-                'batch_preds': preds,
-                'batch_labels': batch["labels"]}
+        loss, preds = self.forward(
+            input_ids=batch["input_ids"],
+            attention_mask=batch["attention_mask"],
+            labels=batch["labels"],
+        )
+        self.log("train_loss", loss)
+        return {"loss": loss, "batch_preds": preds, "batch_labels": batch["labels"]}
 
     # validation、testでもtrain_stepと同じ処理を行う
     def validation_step(self, batch, batch_idx):
-        loss, preds = self.forward(input_ids=batch["input_ids"],
-                                    attention_mask=batch["attention_mask"],
-                                    labels=batch["labels"])
-        return {'loss': loss,
-                'batch_preds': preds,
-                'batch_labels': batch["labels"]}
+        loss, preds = self.forward(
+            input_ids=batch["input_ids"],
+            attention_mask=batch["attention_mask"],
+            labels=batch["labels"],
+        )
+        return {"loss": loss, "batch_preds": preds, "batch_labels": batch["labels"]}
 
     def test_step(self, batch, batch_idx):
-        loss, preds = self.forward(input_ids=batch["input_ids"],
-                                    attention_mask=batch["attention_mask"],
-                                    labels=batch["labels"])
-        return {'loss': loss,
-                'batch_preds': preds,
-                'batch_labels': batch["labels"]}
+        loss, preds = self.forward(
+            input_ids=batch["input_ids"],
+            attention_mask=batch["attention_mask"],
+            labels=batch["labels"],
+        )
+        return {"loss": loss, "batch_preds": preds, "batch_labels": batch["labels"]}
 
     # epoch終了時にvalidationのlossとaccuracyを記録
     def validation_epoch_end(self, outputs, mode="val"):
         # loss計算
-        epoch_preds = torch.cat([x['batch_preds'] for x in outputs])
-        epoch_labels = torch.cat([x['batch_labels'] for x in outputs])
+        epoch_preds = torch.cat([x["batch_preds"] for x in outputs])
+        epoch_labels = torch.cat([x["batch_labels"] for x in outputs])
         epoch_loss = self.criterion(epoch_preds, epoch_labels)
         self.log(f"{mode}_loss", epoch_loss, logger=True)
 
