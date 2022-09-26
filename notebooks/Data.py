@@ -26,7 +26,7 @@ def Data_pre(df):
     df_train = df_train.reset_index(drop=True)
     df_val = df_val.reset_index(drop=True)
     df_test = df_test.reset_index(drop=True)
-    num_class = df_train["code"].max() + 1
+    num_class = df_train["code"].max() + 1  # オリジンの補正
     return df_train, df_val, df_test, num_class
 
 
@@ -38,8 +38,8 @@ def Dataloader(df, x, y, batch):
     for sentence in sentences_text:
         encoding = tokenizer(
             sentence,
-            max_length=100,  # 文章の長さを固定（Padding/Trancatinating）
-            pad_to_max_length=True,  # PADDINGで埋める
+            max_length=100,
+            pad_to_max_length=True,
             truncation=True,
             # return_tensors = 'pt'
         )
